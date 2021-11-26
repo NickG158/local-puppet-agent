@@ -2,4 +2,4 @@
 
 select f in ${PWD}/metadata.*.json; do test -n "$f" && break; echo ">>> Invalid Selection"; done
 metadata=$(basename $f)
-docker run --rm -v ${PWD}/${metadata}:/opt/puppetlabs/facter/facts.d/metadata.json -v ${PWD}:/etc/puppetlabs/code/environments/production puppet-agent "$@"
+docker run --rm -v ${PWD}/${metadata}:/opt/puppetlabs/facter/facts.d/metadata.json -v ${PWD}:/etc/puppetlabs/code/environments/production puppet-agent -v /tmp:/tmp "$@"
